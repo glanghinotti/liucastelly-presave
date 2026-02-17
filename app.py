@@ -28,25 +28,19 @@ def save_email(email):
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
+        @app.route("/", methods=["GET", "POST"])
+def home():
+    if request.method == "POST":
         email = request.form.get("email")
-
         if email:
             save_email(email)
-
-        return redirect(url_for("thanks"))
-
+            # Corrigido para o nome da função abaixo
+            return redirect(url_for("obrigado")) 
+            
     return render_template("index.html", launch_date=LAUNCH_DATE)
-
 
 @app.route("/obrigado")
 def obrigado():
-    return redirect(url_for("obrigado"))
-
-
-
-
-
-
-
-
-
+    # Em vez de redirecionar para si mesma, 
+    # ela deve renderizar uma página de agradecimento.
+    return render_template("obrigado.html")
