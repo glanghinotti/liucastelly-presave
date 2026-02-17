@@ -2,17 +2,60 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Obrigado</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obrigado! - Liu Castelly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            background: linear-gradient(rgba(232, 93, 14, 0.85), rgba(232, 93, 14, 0.85)), 
+                        url('/static/images/Capa.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white; 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+        }
+        .container { 
+            max-width: 450px; 
+            width: 90%;
+            background: rgba(0, 0, 0, 0.7); 
+            padding: 40px 20px; 
+            border-radius: 20px; 
+            text-align: center;
+        }
+        h1 { font-family: 'Permanent Marker', cursive; font-size: 2.5rem; }
+        .links-container { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+        .btn-music {
+            display: block;
+            background: white;
+            color: #121212;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .spotify { border-left: 6px solid #1DB954; }
+        .youtube { border-left: 6px solid #FF0000; }
+    </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>🎉 Obrigado pelo Pré-Save!</h1>
-        <p>Você já está participando do lançamento oficial.</p>
-        <a href="/">Voltar</a>
+        <h1>Obrigado!</h1>
+        <p>Pre-save confirmado para <strong>Bandidinha</strong>.</p>
+        <p>Escolha sua plataforma preferida:</p>
+        <div class="links-container">
+            <a href="https://offstep.link/953013094485" class="btn-music spotify" target="_blank">OUVIR NO SPOTIFY</a>
+            <a href="https://offstep.link/953013094485" class="btn-music youtube" target="_blank">OUVIR NO YOUTUBE MUSIC</a>
+            <a href="https://offstep.link/953013094485" class="btn-music" target="_blank">OUTRAS PLATAFORMAS</a>
+        </div>
+        <br>
+        <a href="/" style="color: white; font-size: 0.8rem;">Voltar</a>
     </div>
-
 </body>
 </html>
-
