@@ -1,10 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for
+from datetime import datetime # Importante caso o seu HTML use a data
 import requests
 import os
 
 app = Flask(__name__)
 
-# URL da sua implantação do Google Sheets
+# Data do lançamento da Liu Castelly
+LAUNCH_DATE = datetime(2026, 3, 6)
+
+# URL da sua implantação do Google Sheets (O link que termina em /exec)
 GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwPcMC0BfvGLvjHut0QorbDDxrVWMQOXs61icB7m300aDHnW-2ENanefkvziHrwsIpz6Q/exec"
 
 @app.route("/", methods=["GET", "POST"])
@@ -12,16 +16,15 @@ def home():
     if request.method == "POST":
         email = request.form.get("email")
         if email:
-            # Envia o e-mail para a sua Planilha Google em tempo real
             try:
+                # Envia para a planilha com um tempo limite de 5 segundos
                 requests.post(GOOGLE_SCRIPT_URL, json={"email": email}, timeout=5)
             except:
-                # Se houver erro na conexão com o Google, o site continua funcionando
                 pass 
-                
             return redirect(url_for("obrigado"))
             
-    return render_template("index.html")
+    # Passamos o launch_date para evitar erros no index.html
+    return render_template("index.html", launch_date=LAUNCH_DATE)
 
 @app.route("/obrigado")
 def obrigado():
