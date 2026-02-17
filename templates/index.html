@@ -3,79 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obrigado! - Liu Castelly</title>
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>Pre-save Liu Castelly - Bandidinha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
-        :root { --orange: #E85D0E; --dark: #121212; }
-        
         body { 
-            background-color: var(--orange); 
-            /* Para usar a capa como fundo, descomente a linha abaixo e coloque o link da imagem */
-            /* background: linear-gradient(rgba(232, 93, 14, 0.8), rgba(232, 93, 14, 0.8)), url('LINK_DA_SUA_IMAGEM'); */
+            background: linear-gradient(rgba(232, 93, 14, 0.8), rgba(232, 93, 14, 0.8)), 
+                        url('/static/images/Capa.webp'); 
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             color: white; 
-            font-family: 'Inter', sans-serif; 
-            margin: 0; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            min-height: 100vh; 
-        }
-
-        .container { 
-            max-width: 450px; 
-            width: 90%;
-            background: rgba(0, 0, 0, 0.6); 
-            padding: 40px 20px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            text-align: center;
-        }
-
-        h1 { font-family: 'Permanent Marker', cursive; font-size: 2.5rem; margin-bottom: 10px; }
-        p { margin-bottom: 30px; font-size: 1.1rem; line-height: 1.5; }
-
-        .links-container { display: flex; flex-direction: column; gap: 12px; }
-
-        .btn-music {
+            font-family: 'Arial', sans-serif; 
+            text-align: center; 
+            margin: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: white;
-            color: var(--dark);
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: transform 0.2s, background 0.2s;
+            min-height: 100vh;
         }
-
-        .btn-music:hover { transform: scale(1.03); background: #f0f0f0; }
-        
-        /* Cores específicas para botões (Opcional) */
-        .spotify { border-left: 5px solid #1DB954; }
-        .youtube { border-left: 5px solid #FF0000; }
-        .apple { border-left: 5px solid #FA243C; }
-        .deezer { border-left: 5px solid #EF5466; }
-        .amazon { border-left: 5px solid #00A8E1; }
+        .container { 
+            max-width: 500px; 
+            background: rgba(0,0,0,0.4); 
+            padding: 40px 20px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        h1 { font-family: 'Permanent Marker', cursive; font-size: 3rem; margin-top: 0; }
+        input[type="email"] { width: 85%; padding: 12px; margin: 20px 0; border-radius: 8px; border: none; font-size: 1rem; }
+        button { background-color: #fff; color: #E85D0E; border: none; padding: 12px 30px; font-weight: bold; cursor: pointer; border-radius: 8px; font-size: 1.1rem; }
+        button:hover { background-color: #f0f0f0; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Obrigado!</h1>
-        <p>Seu e-mail foi salvo. Escolha sua plataforma para garantir o lançamento de <strong>Bandidinha</strong>:</p>
-        
-        <div class="links-container">
-            <a href="https://offstep.link/953013094485" class="btn-music spotify" target="_blank">SPOTIFY</a>
-            <a href="https://offstep.link/953013094485" class="btn-music youtube" target="_blank">YOUTUBE MUSIC</a>
-            <a href="https://offstep.link/953013094485" class="btn-music apple" target="_blank">APPLE MUSIC</a>
-            <a href="https://offstep.link/953013094485" class="btn-music deezer" target="_blank">DEEZER</a>
-            <a href="https://offstep.link/953013094485" class="btn-music amazon" target="_blank">AMAZON MUSIC</a>
-        </div>
-
-        <br>
-        <a href="/" style="color: white; text-decoration: underline; font-size: 0.9rem;">Voltar ao início</a>
+        <h1>LIU CASTELLY</h1>
+        <h2>Bandidinha</h2>
+        <p>Faça o pre-save agora e seja o primeiro a ouvir no dia 06/03/2026!</p>
+        <form method="POST">
+            <input type="email" name="email" placeholder="Seu melhor e-mail" required>
+            <br>
+            <button type="submit">FAZER PRE-SAVE</button>
+        </form>
     </div>
 </body>
 </html>
