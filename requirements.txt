@@ -1,5 +1,7 @@
 gunicorn
 flask
+requests
+
 
 
 
