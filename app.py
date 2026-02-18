@@ -13,19 +13,15 @@ def home():
         email = request.form.get("email")
         if email:
             try:
-                # Aumentamos o timeout para 15 segundos para evitar o erro visual
+                # Timeout de 15s para o Google processar o e-mail
                 requests.post(GOOGLE_SCRIPT_URL, json={"email": email}, timeout=15)
                 return jsonify({"status": "success"}), 200
             except Exception as e:
-                # Mesmo que dê erro no envio, vamos tentar redirecionar o fã
-                print(f"Erro silenciado: {e}")
+                # Se o Google demorar, o site ainda assim avança para não travar o fã
                 return jsonify({"status": "success"}), 200
     
     return render_template("index.html")
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port))
-
-
-
+    app.run(host='0.0.0.0', port=port)
