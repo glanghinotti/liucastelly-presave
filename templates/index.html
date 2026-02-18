@@ -45,39 +45,30 @@
             <a href="https://www.instagram.com/lidianebatista_atleta?igsh=MXM5dHVrNDRhNHlldA==" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.tiktok.com/@liu.castelly?_r=1&_t=ZS-940hV0CotBU" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.facebook.com/share/1KBxePEXnj/" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://liucastelly.com.br" target="_blank" class="main-site-link">VISITAR SITE OFICIAL</a>
+            <a href="https://liucastelly.com.br" target="_blank" class="main-site-link">VISITE O SITE OFICIAL</a>
         </div>
     </div>
-
     <script>
         document.getElementById('preSaveForm').onsubmit = async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             const email = document.getElementById('emailInput').value;
-            
             btn.innerText = "SALVANDO SEU ACESSO...";
             btn.disabled = true;
 
-            // Iniciamos o envio
-            try {
-                fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: 'email=' + encodeURIComponent(email)
-                });
+            // Dispara o salvamento do e-mail mas não trava o fã esperando
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'email=' + encodeURIComponent(email)
+            });
 
-                // Forçamos o sucesso visual e redirecionamento independente do tempo do servidor
-                btn.innerText = "SUCESSO! REDIRECIONANDO...";
-                btn.style.backgroundColor = "#28a745";
-                
-                setTimeout(() => { 
-                    window.location.href = "https://offstep.link/953013094485"; 
-                }, 1500);
-
-            } catch (err) {
-                // Se algo der muito errado, ainda assim tentamos mandar o fã para a Offstep
-                window.location.href = "https://offstep.link/953013094485";
-            }
+            // Força o redirecionamento para garantir a melhor experiência
+            btn.innerText = "SUCESSO! REDIRECIONANDO...";
+            btn.style.backgroundColor = "#28a745";
+            setTimeout(() => { 
+                window.location.href = "https://offstep.link/953013094485"; 
+            }, 1500);
         };
     </script>
 </body>
