@@ -22,13 +22,24 @@
         h1 { font-size: 1.1rem; color: #FFFFFF; font-weight: 700; margin: 0; letter-spacing: 3px; text-transform: uppercase; }
         h2 { font-family: 'Permanent Marker', cursive; font-size: 3.2rem; color: var(--orange); margin: 5px 0 15px 0; line-height: 1.1; }
         
+        /* Container do Vídeo com Botão de Som */
+        .video-wrapper { position: relative; max-width: 260px; margin: 0 auto 25px auto; }
         .video-container {
-            width: 100%; max-width: 260px; margin: 0 auto 25px auto;
-            border-radius: 15px; overflow: hidden; border: 2px solid var(--orange);
+            width: 100%; border-radius: 15px; overflow: hidden; border: 2px solid var(--orange);
             box-shadow: 0 0 20px rgba(232, 93, 14, 0.3);
             aspect-ratio: 9 / 16; background: #000;
         }
         video { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* Botão flutuante de som */
+        #muteBtn {
+            position: absolute; bottom: 15px; right: 15px;
+            background: rgba(0,0,0,0.6); border: 1px solid var(--orange);
+            color: white; border-radius: 50%; width: 40px; height: 40px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            z-index: 10; transition: 0.3s;
+        }
+        #muteBtn:hover { background: var(--orange); }
 
         #countdown { display: flex; justify-content: center; gap: 12px; margin: 0 0 25px 0; }
         .countdown-item { background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 10px; min-width: 55px; border: 1px solid rgba(255,255,255,0.1); }
@@ -37,12 +48,10 @@
 
         p { font-size: 0.95rem; margin-bottom: 20px; opacity: 0.9; line-height: 1.4; }
         input[type="email"] { width: 85%; padding: 15px; margin-bottom: 15px; border-radius: 12px; border: none; font-size: 1rem; outline: none; text-align: center; }
-        button { background-color: var(--orange); color: white; border: none; padding: 16px 20px; font-weight: bold; cursor: pointer; border-radius: 50px; font-size: 1rem; width: 90%; transition: 0.3s; }
-        button:hover { background-color: #ff6a13; transform: scale(1.02); }
+        button#submitBtn { background-color: var(--orange); color: white; border: none; padding: 16px 20px; font-weight: bold; cursor: pointer; border-radius: 50px; font-size: 1rem; width: 90%; transition: 0.3s; }
         
         .social-links { margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
-        .social-links a { color: white; font-size: 1.5rem; margin: 0 12px; text-decoration: none; opacity: 0.8; transition: 0.3s; }
-        .social-links a:hover { opacity: 1; color: var(--orange); }
+        .social-links a { color: white; font-size: 1.5rem; margin: 0 12px; text-decoration: none; opacity: 0.8; }
         .main-site-link { display: block; margin-top: 15px; color: var(--orange); text-decoration: none; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
     </style>
 </head>
@@ -51,11 +60,15 @@
         <h1>LIU CASTELLY</h1>
         <h2>Bandidinha</h2>
         
-        <div class="video-container">
-            <video autoplay muted loop playsinline>
-                <source src="/static/videos/video15.mp4" type="video/mp4">
-                Seu navegador não suporta vídeos.
-            </video>
+        <div class="video-wrapper">
+            <div class="video-container">
+                <video autoplay muted loop playsinline id="spoilerVideo">
+                    <source src="/static/videos/video15.mp4" type="video/mp4">
+                </video>
+            </div>
+            <button id="muteBtn" onclick="toggleMute()">
+                <i id="muteIcon" class="fas fa-volume-mute"></i>
+            </button>
         </div>
 
         <div id="countdown">
@@ -74,14 +87,29 @@
         </form>
 
         <div class="social-links">
-            <a href="https://www.instagram.com/lidianebatista_atleta?igsh=MXM5dHVrNDRhNHlldA==" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@liu.castelly?_r=1&_t=ZS-940hV0CotBU" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.facebook.com/liucastellyoficial?rdid=5ZfIrUwOukwOZM9t&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1KBxePEXnj%2F#" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.facebook.com/liucastellyoficial?rdid=5ZfIrUwOukwOZM9t&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1KBxePEXnj%2F#" target="_blank" class="main-site-link">COMUNIDADE OFICIAL NO FACEBOOK</a>
+            <a href="https://www.instagram.com/lidianebatista_atleta" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@liu.castelly" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.facebook.com/liucastellyoficial" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.facebook.com/liucastellyoficial" target="_blank" class="main-site-link">COMUNIDADE OFICIAL NO FACEBOOK</a>
         </div>
     </div>
 
     <script>
+        // Função para Ligar/Desligar o Som
+        function toggleMute() {
+            const video = document.getElementById('spoilerVideo');
+            const icon = document.getElementById('muteIcon');
+            
+            if (video.muted) {
+                video.muted = false;
+                icon.classList.replace('fa-volume-mute', 'fa-volume-up');
+            } else {
+                video.muted = true;
+                icon.classList.replace('fa-volume-up', 'fa-volume-mute');
+            }
+        }
+
+        // Contador
         const launchDate = new Date("March 6, 2026 00:00:00").getTime();
         const updateCountdown = () => {
             const now = new Date().getTime();
@@ -98,6 +126,7 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
+        // Formulário
         document.getElementById('preSaveForm').onsubmit = async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
