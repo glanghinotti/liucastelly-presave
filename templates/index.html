@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pre-save Liu Castelly - Bandidinha</title>
+    <title>Liu Castelly - Bandidinha (Pre-save)</title>
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root { --orange: #E85D0E; }
+        
         body { 
             background: url('/static/images/Capa.webp'); 
             background-size: cover;
@@ -20,6 +22,7 @@
             justify-content: center;
             min-height: 100vh;
         }
+
         .container { 
             max-width: 500px; 
             width: 90%;
@@ -27,39 +30,105 @@
             padding: 40px 20px; 
             border-radius: 20px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px); 
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
-        /* Título principal: Liu Castelly */
+
+        /* LIU CASTELLY - Pequeno e Branco */
         h1 { 
-            font-family: 'Inter', sans-serif; /* Fonte mais simples */
-            font-size: 1.8rem; /* Letra menor */
-            margin-top: 0; 
-            color: white; /* Cor branca */
-            font-weight: 700;
+            font-size: 1.4rem; 
+            color: #FFFFFF; 
+            font-weight: 700; 
+            margin: 0; 
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
-        /* Título da música: Bandidinha */
+
+        /* Bandidinha - Grande e Laranja */
         h2 { 
-            font-family: 'Permanent Marker', cursive; /* Fonte estilo marker */
-            font-size: 3rem; /* Letra grande */
-            margin-bottom: 10px; 
-            color: #E85D0E; /* Cor vermelha/laranja */
+            font-family: 'Permanent Marker', cursive; 
+            font-size: 3.5rem; 
+            color: var(--orange); 
+            margin: 10px 0 20px 0;
+            line-height: 1.1;
         }
-        p { font-size: 1.1rem; line-height: 1.4; }
-        input[type="email"] { width: 85%; padding: 15px; margin: 25px 0; border-radius: 8px; border: none; font-size: 1rem; font-family: 'Inter', sans-serif; }
-        button { background-color: #E85D0E; color: white; border: none; padding: 15px 35px; font-weight: bold; cursor: pointer; border-radius: 50px; font-size: 1.1rem; transition: transform 0.2s, background 0.2s; }
-        button:hover { background-color: #ff7b29; transform: scale(1.05); }
+
+        p { font-size: 1rem; opacity: 0.9; margin-bottom: 30px; }
+
+        input[type="email"] { 
+            width: 85%; 
+            padding: 15px; 
+            margin-bottom: 20px; 
+            border-radius: 10px; 
+            border: none; 
+            font-size: 1rem; 
+            outline: none;
+        }
+
+        button { 
+            background-color: var(--orange); 
+            color: white; 
+            border: none; 
+            padding: 15px 40px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            border-radius: 50px; 
+            font-size: 1.1rem; 
+            width: 90%;
+            transition: all 0.3s ease;
+        }
+
+        button:disabled { background-color: #555; cursor: not-allowed; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>LIU CASTELLY</h1>
         <h2>Bandidinha</h2>
-        <p>Faça o pre-save agora e seja o primeiro a ouvir no dia 06/03/2026!</p>
-        <form method="POST">
-            <input type="email" name="email" placeholder="Seu melhor e-mail aqui..." required>
+        <p>Faça o pre-save e entre na lista VIP para o lançamento em 06/03/2026!</p>
+        
+        <form id="preSaveForm">
+            <input type="email" id="emailInput" placeholder="Seu melhor e-mail aqui..." required>
             <br>
-            <button type="submit">FAZER PRE-SAVE AGORA</button>
+            <button type="submit" id="submitBtn">FAZER PRE-SAVE AGORA</button>
         </form>
     </div>
+
+    <script>
+        document.getElementById('preSaveForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const email = document.getElementById('emailInput').value;
+
+            btn.innerText = "SALVANDO SEU ACESSO...";
+            btn.disabled = true;
+
+            try {
+                const formData = new FormData();
+                formData.append('email', email);
+
+                const response = await fetch('/', {
+                    method: 'POST',
+                    body: new URLSearchParams(formData)
+                });
+
+                if (response.ok) {
+                    btn.innerText = "SUCESSO! REDIRECIONANDO...";
+                    btn.style.backgroundColor = "#28a745"; // Verde de sucesso
+                    
+                    // Espera 2 segundos para o fã ler a confirmação e redireciona
+                    setTimeout(() => {
+                        window.location.href = "https://offstep.link/953013094485";
+                    }, 2000);
+                } else {
+                    throw new Error();
+                }
+            } catch (err) {
+                btn.innerText = "ERRO! TENTE NOVAMENTE";
+                btn.style.backgroundColor = "#dc3545";
+                btn.disabled = false;
+            }
+        };
+    </script>
 </body>
 </html>
