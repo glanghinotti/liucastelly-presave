@@ -15,39 +15,20 @@
             display: flex; align-items: center; justify-content: center; min-height: 100vh;
         }
         .container { 
-            max-width: 500px; width: 90%; background: rgba(0, 0, 0, 0.7); 
+            max-width: 500px; width: 90%; background: rgba(0, 0, 0, 0.75); 
             padding: 40px 20px; border-radius: 20px; backdrop-filter: blur(10px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         h1 { font-size: 1.3rem; color: #FFFFFF; font-weight: 700; margin: 0; letter-spacing: 2px; }
-        h2 { 
-            font-family: 'Permanent Marker', cursive; font-size: 3.5rem; 
-            color: var(--orange); margin: 10px 0 20px 0; line-height: 1.1;
-        }
+        h2 { font-family: 'Permanent Marker', cursive; font-size: 3.5rem; color: var(--orange); margin: 10px 0 20px 0; line-height: 1.1; }
         p { font-size: 1rem; margin-bottom: 30px; opacity: 0.9; }
-        input[type="email"] { 
-            width: 85%; padding: 15px; margin-bottom: 20px; border-radius: 10px; 
-            border: none; font-size: 1rem; outline: none;
-        }
-        button { 
-            background-color: var(--orange); color: white; border: none; padding: 15px 40px; 
-            font-weight: bold; cursor: pointer; border-radius: 50px; font-size: 1.1rem; width: 90%;
-            transition: all 0.3s ease;
-        }
+        input[type="email"] { width: 85%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: none; font-size: 1rem; outline: none; }
+        button { background-color: var(--orange); color: white; border: none; padding: 15px 40px; font-weight: bold; cursor: pointer; border-radius: 50px; font-size: 1.1rem; width: 90%; transition: all 0.3s ease; }
         button:disabled { background-color: #555; cursor: not-allowed; }
-
-        /* Estilo dos Links Sociais */
         .social-links { margin-top: 35px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 25px; }
-        .social-links a { 
-            color: white; font-size: 1.5rem; margin: 0 15px; 
-            text-decoration: none; transition: color 0.3s; 
-        }
+        .social-links a { color: white; font-size: 1.6rem; margin: 0 15px; text-decoration: none; transition: color 0.3s; }
         .social-links a:hover { color: var(--orange); }
-        .main-site-link { 
-            display: block; margin-top: 20px; color: rgba(255,255,255,0.7); 
-            text-decoration: none; font-size: 0.9rem; font-weight: bold;
-        }
-        .main-site-link:hover { color: white; text-decoration: underline; }
+        .main-site-link { display: block; margin-top: 20px; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -55,33 +36,25 @@
         <h1>LIU CASTELLY</h1>
         <h2>Bandidinha</h2>
         <p>Faça o pre-save e entre na lista VIP para o lançamento em 06/03/2026!</p>
-        
         <form id="preSaveForm">
             <input type="email" id="emailInput" placeholder="Seu melhor e-mail aqui..." required>
             <br>
             <button type="submit" id="submitBtn">FAZER PRE-SAVE AGORA</button>
         </form>
-
         <div class="social-links">
-            <a href="https://www.instagram.com/lidianebatista_atleta?igsh=MXM5dHVrNDRhNHlldA==" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@liu.castelly?_r=1&_t=ZS-940hV0CotBU" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.facebook.com/share/1KBxePEXnj/" target="_blank" title="Comunidade Facebook"><i class="fab fa-facebook"></i></a>
-            
-            <a href="https://liucastelly.com.br" target="_blank" class="main-site-link">
-                VISITAR SITE OFICIAL: liucastelly.com.br
-            </a>
+            <a href="https://www.instagram.com/lidianebatista_atleta?igsh=MXM5dHVrNDRhNHlldA==" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@liu.castelly?_r=1&_t=ZS-940hV0CotBU" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.facebook.com/share/1KBxePEXnj/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://liucastelly.com.br" target="_blank" class="main-site-link">VISITAR SITE OFICIAL</a>
         </div>
     </div>
-
     <script>
         document.getElementById('preSaveForm').onsubmit = async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             const email = document.getElementById('emailInput').value;
-
             btn.innerText = "SALVANDO SEU ACESSO...";
             btn.disabled = true;
-
             try {
                 const response = await fetch('/', {
                     method: 'POST',
@@ -89,16 +62,13 @@
                     body: 'email=' + encodeURIComponent(email)
                 });
                 const result = await response.json();
-
                 if (result.status === 'success') {
                     btn.innerText = "SUCESSO! REDIRECIONANDO...";
                     btn.style.backgroundColor = "#28a745";
-                    setTimeout(() => {
-                        window.location.href = "https://offstep.link/953013094485";
-                    }, 2000);
+                    setTimeout(() => { window.location.href = "https://offstep.link/953013094485"; }, 2000);
                 } else { throw new Error(); }
             } catch (err) {
-                btn.innerText = "ERRO! TENTE NOVAMENTE";
+                btn.innerText = "ERRO: AUTORIZE O GOOGLE SCRIPT";
                 btn.style.backgroundColor = "#dc3545";
                 btn.disabled = false;
             }
