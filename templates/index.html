@@ -15,28 +15,35 @@
             display: flex; align-items: center; justify-content: center; min-height: 100vh;
         }
         .container { 
-            max-width: 500px; width: 90%; background: rgba(0, 0, 0, 0.75); 
-            padding: 40px 20px; border-radius: 20px; backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin: 20px 0;
+            max-width: 450px; width: 90%; background: rgba(0, 0, 0, 0.85); 
+            padding: 30px 20px; border-radius: 25px; backdrop-filter: blur(15px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6); margin: 40px 0;
         }
-        h1 { font-size: 1.2rem; color: #FFFFFF; font-weight: 700; margin: 0; letter-spacing: 2px; text-transform: uppercase; }
-        h2 { font-family: 'Permanent Marker', cursive; font-size: 3.5rem; color: var(--orange); margin: 10px 0 5px 0; line-height: 1.1; }
+        h1 { font-size: 1.1rem; color: #FFFFFF; font-weight: 700; margin: 0; letter-spacing: 3px; text-transform: uppercase; }
+        h2 { font-family: 'Permanent Marker', cursive; font-size: 3.2rem; color: var(--orange); margin: 5px 0 15px 0; line-height: 1.1; }
         
-        /* Estilo do Contador */
-        #countdown { display: flex; justify-content: center; gap: 15px; margin: 20px 0 30px 0; }
-        .countdown-item { background: rgba(232, 93, 14, 0.15); border: 1px solid var(--orange); padding: 10px; border-radius: 10px; min-width: 60px; }
-        .countdown-number { display: block; font-size: 1.5rem; font-weight: bold; color: var(--orange); }
-        .countdown-label { font-size: 0.7rem; text-transform: uppercase; opacity: 0.8; }
+        .video-container {
+            width: 100%; max-width: 260px; margin: 0 auto 25px auto;
+            border-radius: 15px; overflow: hidden; border: 2px solid var(--orange);
+            box-shadow: 0 0 20px rgba(232, 93, 14, 0.3);
+            aspect-ratio: 9 / 16; background: #000;
+        }
+        video { width: 100%; height: 100%; object-fit: cover; }
 
-        p { font-size: 1rem; margin-bottom: 25px; opacity: 0.9; }
-        input[type="email"] { width: 85%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: none; font-size: 1rem; outline: none; color: #333; }
-        button { background-color: var(--orange); color: white; border: none; padding: 15px 40px; font-weight: bold; cursor: pointer; border-radius: 50px; font-size: 1.1rem; width: 90%; transition: all 0.3s ease; }
-        button:disabled { background-color: #555; cursor: not-allowed; }
+        #countdown { display: flex; justify-content: center; gap: 12px; margin: 0 0 25px 0; }
+        .countdown-item { background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 10px; min-width: 55px; border: 1px solid rgba(255,255,255,0.1); }
+        .countdown-number { display: block; font-size: 1.3rem; font-weight: bold; color: var(--orange); }
+        .countdown-label { font-size: 0.6rem; text-transform: uppercase; opacity: 0.7; }
+
+        p { font-size: 0.95rem; margin-bottom: 20px; opacity: 0.9; line-height: 1.4; }
+        input[type="email"] { width: 85%; padding: 15px; margin-bottom: 15px; border-radius: 12px; border: none; font-size: 1rem; outline: none; text-align: center; }
+        button { background-color: var(--orange); color: white; border: none; padding: 16px 20px; font-weight: bold; cursor: pointer; border-radius: 50px; font-size: 1rem; width: 90%; transition: 0.3s; }
+        button:hover { background-color: #ff6a13; transform: scale(1.02); }
         
-        .social-links { margin-top: 35px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 25px; }
-        .social-links a { color: white; font-size: 1.6rem; margin: 0 15px; text-decoration: none; transition: color 0.3s; }
-        .social-links a:hover { color: var(--orange); }
-        .main-site-link { display: block; margin-top: 20px; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; }
+        .social-links { margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .social-links a { color: white; font-size: 1.5rem; margin: 0 12px; text-decoration: none; opacity: 0.8; transition: 0.3s; }
+        .social-links a:hover { opacity: 1; color: var(--orange); }
+        .main-site-link { display: block; margin-top: 15px; color: var(--orange); text-decoration: none; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -44,6 +51,13 @@
         <h1>LIU CASTELLY</h1>
         <h2>Bandidinha</h2>
         
+        <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="/static/videos/video15.mp4" type="video/mp4">
+                Seu navegador não suporta vídeos.
+            </video>
+        </div>
+
         <div id="countdown">
             <div class="countdown-item"><span id="days" class="countdown-number">00</span><span class="countdown-label">Dias</span></div>
             <div class="countdown-item"><span id="hours" class="countdown-number">00</span><span class="countdown-label">Horas</span></div>
@@ -51,10 +65,10 @@
             <div class="countdown-item"><span id="seconds" class="countdown-number">00</span><span class="countdown-label">Seg</span></div>
         </div>
 
-        <p>Faça o pre-save e entre na lista VIP para o lançamento!</p>
+        <p>Ouça um trecho exclusivo acima! <br>Faça o pre-save para a lista VIP.</p>
         
         <form id="preSaveForm">
-            <input type="email" id="emailInput" placeholder="Seu melhor e-mail aqui..." required>
+            <input type="email" id="emailInput" placeholder="Seu melhor e-mail..." required>
             <br>
             <button type="submit" id="submitBtn">FAZER PRE-SAVE AGORA</button>
         </form>
@@ -63,41 +77,32 @@
             <a href="https://www.instagram.com/lidianebatista_atleta?igsh=MXM5dHVrNDRhNHlldA==" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.tiktok.com/@liu.castelly?_r=1&_t=ZS-940hV0CotBU" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.facebook.com/liucastellyoficial?rdid=5ZfIrUwOukwOZM9t&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1KBxePEXnj%2F#" target="_blank"><i class="fab fa-facebook"></i></a>
-            
-            <a href="https://www.facebook.com/liucastellyoficial?rdid=5ZfIrUwOukwOZM9t&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1KBxePEXnj%2F#" target="_blank" class="main-site-link">
-                PARTICIPE DA COMUNIDADE NO FACEBOOK
-            </a>
+            <a href="https://www.facebook.com/liucastellyoficial?rdid=5ZfIrUwOukwOZM9t&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1KBxePEXnj%2F#" target="_blank" class="main-site-link">COMUNIDADE OFICIAL NO FACEBOOK</a>
         </div>
     </div>
 
     <script>
-        // Lógica do Contador
         const launchDate = new Date("March 6, 2026 00:00:00").getTime();
-
         const updateCountdown = () => {
             const now = new Date().getTime();
             const distance = launchDate - now;
-
             const d = Math.floor(distance / (1000 * 60 * 60 * 24));
             const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((distance % (1000 * 60)) / 1000);
-
             document.getElementById("days").innerText = d < 10 ? "0" + d : d;
             document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
             document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
             document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
         };
-
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Lógica do Formulário
         document.getElementById('preSaveForm').onsubmit = async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             const email = document.getElementById('emailInput').value;
-            btn.innerText = "SALVANDO SEU ACESSO...";
+            btn.innerText = "SALVANDO...";
             btn.disabled = true;
 
             try {
@@ -106,13 +111,9 @@
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: 'email=' + encodeURIComponent(email)
                 });
-
                 btn.innerText = "SUCESSO! REDIRECIONANDO...";
                 btn.style.backgroundColor = "#28a745";
-                
-                setTimeout(() => { 
-                    window.location.href = "https://offstep.link/953013094485"; 
-                }, 1500);
+                setTimeout(() => { window.location.href = "https://offstep.link/953013094485"; }, 1500);
             } catch (err) {
                 window.location.href = "https://offstep.link/953013094485";
             }
